@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,6 +24,14 @@ class Commande
 
     #[ORM\Column]
     private ?int $etat = null;
+
+    #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'commande')]
+    private Collection $details;
+
+    public function __construct()
+    {
+        $this->details = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -67,6 +77,36 @@ class Commande
     public function setEtat(int $etat): static
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Detail>
+     */
+    public function getDetails(): Collection
+    {
+        return $this->details;
+    }
+
+    public function addDetail(Detail $detail): static
+    {
+        if (!$this->details->contains($detail)) {
+            $this->details->add($detail);
+            $detail->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetail(Detail $detail): static
+    {
+        if ($this->details->removeElement($detail)) {
+            // set the owning side to null (unless already changed)
+            if ($detail->getCommande() === $this) {
+                $detail->setCommande(null);
+            }
+        }
 
         return $this;
     }
