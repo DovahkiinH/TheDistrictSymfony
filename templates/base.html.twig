@@ -1,17 +1,114 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
+<html lang="fr">
+
+<head>
+    <title>{% block title %}The District{% endblock %}</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Keywords" content="Restauration,the district,commande,nourriture">
+    <meta name="Subject" content="Restauration">
+    <meta name="Author" content="Loick.C">
+    <meta name="Geography" content="Amiens,France,80000">
+    <meta name="Category" content="shopping">
+
+    {% block stylesheets %}    
+    
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('CSS/Css.css') }}">
+    
+    {% endblock %}
+
+    {% block importmap %}{{ importmap('app') }}{% endblock %}
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+        </script>
+        {% block javascripts %}{% endblock %}
+
+</head>
+
+<body>
+  
+<div class="container-fluid">
+
+    <header>
+
+            <div class="col-12 d-flex" id="menu">
+
+                <div class="col-1">
+                    <img src="{{ asset('/img/the_district_brand/logo.png')}}" class="col-8 img-fluid" alt="district_logo">
+                </div>
+              
+                <nav class="navbar navbar-expand-lg">
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+
+                        <ul class="navbar-nav">
+                
+                        <li class="nav-item active"> <a class="nav-link text-decoration-underline" href="index.php">Accueil</a> </li>
+                
+                        <li class="nav-item"> <a class="nav-link text-decoration-underline" href="Categorie.php">Catégorie</a> </li>
+                
+                        <li class="nav-item"> <a class="nav-link text-decoration-underline" href="Plats.php">Plats</a> </li>
+
+                        <li class="nav-item"> <a class="nav-link text-decoration-underline" href="Contact.php">Contact</a> </li>
+                
+                        </ul>
+
+                    </div>
+        
+                </nav>
+
+    </header>
+
+    {% block body %}{% endblock %}
+
+        <footer class="" id="footer">
+
+        <div class="col-12 d-flex justify-content-center">
+
+        <a href="Reseau.php">
+            <img src="{{ asset('/img/logo/ytb.png')}}" class="col-4 mt-2 rounded-circle zoom" title="Youtube"/>
+            </a>
+
+        <a href="Reseau.php">
+            <img src="{{ asset('/img/logo/Fb.jpeg')}}" class="col-4 mt-2 rounded-circle zoom" title="Facebook"/>
+            </a>
+
+        <a href="Reseau.php">
+            <img src="{{ asset('/img/logo/Twitter.png')}}" class="col-4 mt-2 rounded-circle zoom" title="Twitter"/>
+            </a>
+
+        <a href="Reseau.php">
+            <img src="{{ asset('/img/logo/Insta.jpeg')}}" class="col-4 mt-2 rounded-circle zoom" title="Instagram"/>
+            </a>
+
+        <a href="Reseau.php">
+            <img src="{{ asset('/img/logo/Snap.jpg')}}" class="col-4 mt-2 rounded-circle zoom" title="Snapchat"/>
+            </a>
+
+        </div>
+
+        </footer>
+                
+            </div>
+
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     </body>
+
 </html>

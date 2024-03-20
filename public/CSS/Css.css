@@ -66,7 +66,7 @@ body{
 
 .parallax {
 
-    background-image: url("/Assets/Img/Ardoise1.png");
+    background-image: url("/img/Ardoise1.png");
   
     min-height: 50vh;
   
@@ -79,7 +79,7 @@ body{
 
 .parallax2 {
 
-    background-image: url("/Assets/Img/Ardoise2.png");
+    background-image: url("/img/Ardoise2.png");
   
     min-height: 50vh;
   
