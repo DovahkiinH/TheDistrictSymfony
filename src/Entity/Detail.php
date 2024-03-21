@@ -16,8 +16,11 @@ class Detail
     #[ORM\Column]
     private ?int $quantite = null;
 
+    #[ORM\ManyToOne(inversedBy: 'detail')]
+    private ?Plat $plat = null;
+
     #[ORM\ManyToOne(inversedBy: 'details')]
-    private ?commande $commande = null;
+    private ?Commande $commande = null;
 
     public function getId(): ?int
     {
@@ -43,6 +46,18 @@ class Detail
         return $this;
     }
 
+    public function getPlat(): ?Plat
+    {
+        return $this->plat;
+    }
+
+    public function setPlat(?Plat $plat): static
+    {
+        $this->plat = $plat;
+
+        return $this;
+    }
+
     public function getCommande(): ?commande
     {
         return $this->commande;
@@ -54,4 +69,5 @@ class Detail
 
         return $this;
     }
+
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PlatRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -29,8 +31,16 @@ class Plat
     #[ORM\Column]
     private ?bool $active = null;
 
+    #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'plat')]
+    private Collection $detail;
+
     #[ORM\ManyToOne(inversedBy: 'plats')]
-    private ?categorie $categorie = null;
+    private ?Categorie $categorie = null;
+
+    public function __construct()
+    {
+        $this->detail = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -104,15 +114,46 @@ class Plat
         return $this;
     }
 
-    public function getCategorie(): ?categorie
+    /**
+     * @return Collection<int, detail>
+     */
+    public function getDetail(): Collection
+    {
+        return $this->detail;
+    }
+
+    public function addDetail(detail $detail): static
+    {
+        if (!$this->detail->contains($detail)) {
+            $this->detail->add($detail);
+            $detail->setPlat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetail(detail $detail): static
+    {
+        if ($this->detail->removeElement($detail)) {
+            // set the owning side to null (unless already changed)
+            if ($detail->getPlat() === $this) {
+                $detail->setPlat(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
     {
         return $this->categorie;
     }
 
-    public function setCategorie(?categorie $categorie): static
+    public function setCategorie(?Categorie $categorie): static
     {
         $this->categorie = $categorie;
 
         return $this;
     }
+
 }

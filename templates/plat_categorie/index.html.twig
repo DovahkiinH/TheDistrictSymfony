@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Plats Catégories{% endblock %}
+
+{% block body %}
+
+<div class="video-container">
+
+        <video autoplay loop muted>
+
+            <source src="{{ asset('/img/BgVideo.mp4')}}" type="video/mp4">
+
+            Votre navigateur ne prend pas en charge la lecture de vidéos HTML5.
+
+        </video>
+
+</div>
+
+{% if platsC is defined and platsC is not empty %}
+    {% for plat in platsC %}
+
+        <div class="col-6 col-lg-4 my-3 d-flex justify-content-center text-center">
+            <div class="card zoom col-5 pt-2 px-2">
+                <img src="{{ asset ( '/img/food/' ~ plat . image ) }}" class="card-img-top card-img" alt="Image de la carte">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ plat . libelle }}</h5>
+                            <p class="card-text">{{ plat . description }}</p>
+                            <p class="card-text">{{ plat . prix }} €</p>
+                            <a href="Commande.php?plat_id=' . $plat['id'] . '" class="btn btn-primary btn-mod">Passer une commande</a>
+                    </div>
+            </div>
+        </div>
+
+{% endfor %}
+    {% else %}
+        <p>Cette catégorie ne contient pas encore de plat</p>
+    {% endif %}
+
+{% endblock %}

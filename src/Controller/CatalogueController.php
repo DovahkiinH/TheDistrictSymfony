@@ -24,14 +24,66 @@ class CatalogueController extends AbstractController
     public function index(): Response
     {
         $categorie = $this -> CategorieRepository -> findBy ( ['active' => 1], null , 6);
-        $plat = $this -> PlatRepository -> findBy ( ['active'=> 1], /*['quantité' => 'ASC']*/ null, 3);
+        $platP = $this -> PlatRepository -> findBy ( ['active'=> 1], /*['quantité' => 'ASC']*/ null, 3);
 
         return $this->render('catalogue/index.html.twig', [
             
             'controller_name' => 'CatalogueController',
             'categorie'=> $categorie,
-            'plat'=> $plat
+            'platP'=> $platP
 
+        ]);
+    }
+
+
+    #[Route('/plats', name: 'app_plats')]
+    public function ViewPlats(): Response
+    {
+        $categories=$this->CategorieRepository->findAll();
+        $plats=$this->PlatRepository->findAll();
+
+        return $this->render('catalogue/plats.html.twig', 
+        
+            [
+                'controller_name' => 'PlatsController',
+
+                'categorie'=> $categories,
+
+                'plats'=> $plats
+            ]
+        );
+    }
+
+
+    #[Route('/categories', name: 'app_categories')]
+    public function ViewCategorie(): Response
+    {
+        $categorie = $this -> CategorieRepository -> findAll ();
+        
+        // Regarde pagination pour les autres pages du caroussel
+
+        return $this->render('categorie/index.html.twig', 
+        
+            [
+                'controller_name' => 'CategorieController',
+
+                'categorie'=> $categorie,
+            ]
+        );
+    }
+
+
+    #[Route('/plats/{categorie_id}', name: 'app_platsC')]
+    public function viewPlatCat($categorie_id): Response
+    {
+
+        $categorie = $this->CategorieRepository->find($categorie_id);
+        
+        $platsC = $categorie->getPlats();
+    
+        return $this->render('/plat_categorie/index.html.twig', [
+            'categorie' => $categorie,
+            'platsC' => $platsC,
         ]);
     }
 }
