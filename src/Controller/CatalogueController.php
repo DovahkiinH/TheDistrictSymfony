@@ -42,7 +42,7 @@ class CatalogueController extends AbstractController
         $categories=$this->CategorieRepository->findAll();
         $plats=$this->PlatRepository->findAll();
 
-        return $this->render('catalogue/plats.html.twig', 
+        return $this->render('/plats/index.html.twig', 
         
             [
                 'controller_name' => 'PlatsController',
@@ -59,10 +59,8 @@ class CatalogueController extends AbstractController
     public function ViewCategorie(): Response
     {
         $categorie = $this -> CategorieRepository -> findAll ();
-        
-        // Regarde pagination pour les autres pages du caroussel
 
-        return $this->render('categorie/index.html.twig', 
+        return $this->render('/categorie/index.html.twig', 
         
             [
                 'controller_name' => 'CategorieController',
@@ -79,11 +77,11 @@ class CatalogueController extends AbstractController
 
         $categorie = $this->CategorieRepository->find($categorie_id);
         
-        $platsC = $categorie->getPlats();
+        $plats = $categorie->getPlats();
     
         return $this->render('/plat_categorie/index.html.twig', [
             'categorie' => $categorie,
-            'platsC' => $platsC,
+            'plats' => $plats,
         ]);
     }
 }
