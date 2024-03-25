@@ -29,7 +29,9 @@ class CatalogueController extends AbstractController
         return $this->render('catalogue/index.html.twig', [
             
             'controller_name' => 'CatalogueController',
+
             'categorie'=> $categorie,
+            
             'platP'=> $platP
 
         ]);
@@ -72,7 +74,7 @@ class CatalogueController extends AbstractController
 
 
     #[Route('/plats/{categorie_id}', name: 'app_platsC')]
-    public function viewPlatCat($categorie_id): Response
+    public function viewPlatC($categorie_id): Response
     {
 
         $categorie = $this->CategorieRepository->find($categorie_id);
