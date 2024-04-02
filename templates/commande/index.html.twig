@@ -4,4 +4,45 @@
 
 {% block body %}
 
+<section class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-6">
+
+            <h1>Validation de la commande</h1>
+
+            {{ form_start(commandeForm) }}
+
+            {{ form_row(commandeForm.adresseLivraison, {label: 'Adresse de Livraison :'}) }}
+
+            {{ form_row(commandeForm.adresseFacturation, {label: 'Adresse de Facturation :'}) }}
+
+            {{ form_row(commandeForm.MoyenPaiement, {label: 'Moyen de Paiement :'}) }}
+
+            {{ form_row(commandeForm.NomCarte, {label: 'Nom du propriétaire de la carte :'}) }}
+
+            {{ form_row(commandeForm.NumeroCarte, {label: 'Numéros de la carte :'}) }}
+
+            {{ form_row(commandeForm.DateExpiration, {label: 'Date d\'Expiration :'}) }}
+
+            {{ form_row(commandeForm.CCV, {label: 'CCV :'}) }}
+
+            {{ form_row(commandeForm.RGPDConsent) }}
+
+            <div class="d-flex justify-content-center my-3">
+
+                    <button type="submit" class="btn btn-md btn-outline-info">Valider</button>
+
+                </div>
+
+            {{ form_end(commandeForm) }}
+
+        </div>
+    
+    </div>
+
+</section>
+
+
 {% endblock %}
