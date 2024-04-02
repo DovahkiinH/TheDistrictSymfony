@@ -291,7 +291,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nom`, `prenom`, `telephone`, `adresse`, `cp`, `ville`) VALUES
 (1, 'Loick.caplier@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$BayD3TY9wgOXdlMXOgvrYeUbLR.zsoNf.TPJN5qOsPd28sWrT6kHW', 'Caplier', 'Loick', '0635592991', '66 bis rue ambroise croizat', '80610', 'st ouen'),
-(2, 'Sacquet@gmail.com', '[\"ROLE_USER\"]', '$2y$13$h10ApkjJNJbCoEMZ3l6we.3QzULQYcOO97.rG837wZdafmbmjsZGq', 'Sacquet', 'Bilbon', '0651114406', '330 avenue de la comtée', '80000', 'Amiens');
+(2, 'Sacquet@gmail.com', '[\"ROLE_CLIENT\"]', '$2y$13$h10ApkjJNJbCoEMZ3l6we.3QzULQYcOO97.rG837wZdafmbmjsZGq', 'Sacquet', 'Bilbon', '0651114406', '330 avenue de la comtée', '80000', 'Amiens');
 
 --
 -- Index pour les tables déchargées
